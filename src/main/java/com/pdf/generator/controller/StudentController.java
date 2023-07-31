@@ -39,7 +39,7 @@ public class StudentController {
 		return new ResponseEntity<>(student, HttpStatus.CREATED);
 	}
 
-//	Edit by phone number
+//	Edit student data
 	@PutMapping("/updateStudentData")
 	public ResponseEntity<Student> updateStudent(@RequestBody Student student) {
 		studentService.save(student);
