@@ -9,12 +9,14 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lowagie.text.DocumentException;
@@ -49,6 +51,14 @@ public class StudentController {
 		PdfGenerator generator = new PdfGenerator();
 		generator.setStudentList(studentList);
 		generator.generate(response);
+	}
+
+//	Get all students with pagination & sorting
+	@GetMapping("/getPage")
+	public ResponseEntity<List<Student>> getAllStudents(@RequestParam(defaultValue = "0") Integer pageNumber,
+			@RequestParam(defaultValue = "10") Integer pageSize, @RequestParam(defaultValue = "id") String sortBy) {
+		List<Student> list = studentService.getAllStudents(pageNumber, pageSize, sortBy);
+		return new ResponseEntity<List<Student>>(list, new HttpHeaders(), HttpStatus.OK);
 	}
 
 }
