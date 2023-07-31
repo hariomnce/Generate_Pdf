@@ -29,7 +29,7 @@ public class StudentService {
 		return studentRepository.findAll();
 	}
 
-//	Edit by phone number
+//	Edit student data
 	public Student updateStudent(Student student) {
 		studentRepository.saveAndFlush(student);
 		return student;
