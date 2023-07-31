@@ -23,7 +23,6 @@ import com.lowagie.text.DocumentException;
 import com.pdf.generator.entity.Student;
 import com.pdf.generator.service.StudentService;
 import com.pdf.generator.util.PdfGenerator;
-import com.project.assignment.entity.Customer;
 
 @RestController
 //@RequestMapping("/slip")
@@ -32,12 +31,14 @@ public class StudentController {
 	@Autowired
 	StudentService studentService;
 
+//	Save students
 	@PostMapping("/save")
 	public ResponseEntity<Student> saveStudent(@RequestBody Student student) {
 		studentService.save(student);
 		return new ResponseEntity<>(student, HttpStatus.CREATED);
 	}
 
+//	Get all students in pdf format	
 	@GetMapping("/pdf/students")
 	public void generatePdf(HttpServletResponse response) throws DocumentException, IOException {
 		response.setContentType("application/pdf");

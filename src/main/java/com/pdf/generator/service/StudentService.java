@@ -19,10 +19,12 @@ public class StudentService {
 	@Autowired
 	StudentRepository studentRepository;
 
+//	Save students
 	public void save(Student student) {
 		studentRepository.save(student);
 	}
 
+//	Get all students
 	public List<Student> findAllStudents() {
 		return studentRepository.findAll();
 	}
