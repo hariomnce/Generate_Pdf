@@ -29,6 +29,12 @@ public class StudentService {
 		return studentRepository.findAll();
 	}
 
+//	Edit by phone number
+	public Student updateStudent(Student student) {
+		studentRepository.saveAndFlush(student);
+		return student;
+	}
+
 //	Get all students with pagination & sorting
 	public List<Student> getAllStudents(Integer pageNumber, Integer pageSize, String sortBy) {
 		Pageable page = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy));
